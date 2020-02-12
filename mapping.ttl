@@ -1,0 +1,170 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbp: <http://dbpedia.org/property/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix gn: <http://geonames.org/> .
+@prefix wb: <http://worldbank.org/> .
+@prefix dqm: <http://purl.org/dqm-vocabulary/v1/dqm#> .
+@base <http://geonames.org/> .
+
+
+<TriplesMapGeonames>
+  a rr:TriplesMap;
+
+  # Define the data source (file location)
+  rml:logicalSource [
+    rml:source "dataset-geonames-countryInfo.csv";
+    rml:referenceFormulation ql:CSV
+  ];
+
+  # Define the subject of the generated statements
+  rr:subjectMap [ rr:template "http://geonames.org/country/{ISO}" ;
+    rr:class gn:Country ];
+
+  # Map Country
+  rr:predicateObjectMap [
+    rr:predicate dbo:Country ; 
+    rr:objectMap [ rml:reference "Country"]
+  ] ;
+
+  # Map ISO-Numeric
+  rr:predicateObjectMap [
+    rr:predicate dbo:iso31661Code ; 
+    rr:objectMap [ rml:reference "ISO-Numeric" ; rr:datatype xsd:string ]
+  ] ;
+
+  # Map fips
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:fipsCode ;
+    rr:objectMap [ rml:reference "fips" ; rr:datatype xsd:string ]
+  ] ;
+
+  # Map the country name to rdfs:label
+  rr:predicateObjectMap [ 
+    rr:predicate rdfs:label ;
+    rr:objectMap [ rml:reference "Country" ; rr:datatype xsd:string ]
+  ] ;
+
+  # Map Capital
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:Capital ; 
+    rr:objectMap [ rml:reference "Capital" ; rr:datatype xsd:string ]
+  ] ;
+
+  # Map Area property as an integer
+  rr:predicateObjectMap [ 
+    rr:predicate <http://dbpedia.org/ontology/PopulatedPlace/areaTotal> ; 
+    rr:objectMap [ rml:reference "Area" ; rr:datatype xsd:integer ]
+  ] ;
+
+  # Define the object of the population property as an integer
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:population ;
+    rr:objectMap [ rml:reference "Population" ; rr:datatype xsd:integer ]
+  ] ;
+
+  # Generate a URI for the continent object
+  rr:predicateObjectMap [ 
+    rr:predicate gn:continent ;
+    rr:objectMap [ rr:template "http://geonames.org/continent/{Continent}" ]
+  ] ;
+
+  # Map tld
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:topLevelDomain ;
+    rr:objectMap [ rml:reference "tld" ; rr:datatype xsd:string ]
+  ] ;
+
+  # CurrencyCode
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:currencyCode ;
+    rr:objectMap [ rml:reference "CurrencyCode" ; rr:datatype xsd:string ]
+  ] ;
+
+  # CurrencyName
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:Currency ; 
+    rr:objectMap [ rml:reference "CurrencyName" ; rr:datatype xsd:string ]
+  ] ;
+
+  # Map Phone
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:areaCode ; 
+    rr:objectMap [ rml:reference "Phone" ; rr:datatype xsd:string ]
+  ] ;
+
+  # Map Postal code Format ### -> not code its just the format
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:postalCode ; 
+    rr:objectMap [ rml:reference "Postal Code Format" ; rr:datatype xsd:string ]
+  ] ;
+
+  # Map Postal code regex 
+  rr:predicateObjectMap [ 
+    rr:predicate dqm:regex ; 
+    rr:objectMap [ rml:reference "Postal Code Regex" ; rr:datatype xsd:string ]
+  ] ;
+
+  # Map Languages
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:Language ; 
+    rr:objectMap [ rml:reference "Languages" ; rr:datatype xsd:string ]
+  ] ;
+
+  # Map geonameid ###### did not find appropriate vocabulary here
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:GeoNameId ; 
+    rr:objectMap [ rml:reference "geonameid" ; rr:datatype xsd:integer ]
+  ] ;
+
+  # Map neighbours
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:neighbourRegion ; 
+    rr:objectMap [ rml:reference "neighbours" ; rr:datatype xsd:string ]
+  ] ;
+
+  # Map EquivalentFipscode  ###### did not find appropriate vocabulary here
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:EquivalentFipsCode ;
+    rr:objectMap [ rml:reference "EquivalentFipsCode" ; rr:datatype xsd:string ]
+  ] .
+
+# Generates GDP entries yearly for each country from WorldBank data
+<TriplesMapGdpEntries> 
+  a rr:TriplesMap;
+
+  rml:logicalSource [
+    rml:source "dataset-worldbank-gdp.xml";
+    rml:referenceFormulation ql:XPath ;
+    rml:iterator "/Root/data/record"
+  ] ;
+
+  # Generate a URI for each GDP yearly entry, for each country
+  rr:subjectMap [ rr:template "http://data.worldbank.org/indicator/{field/@key}?location={country/@key}" ;
+    rr:class wb:GdpEntry ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate dbo:Year;
+    rr:objectMap [
+      rml:reference "./year"
+    ]
+  ];
+
+  # Add the country label to the GDP entry
+  rr:predicateObjectMap [ 
+    rr:predicate dbo:Country;
+    rr:objectMap [ rml:reference "./country" ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate dbp:gdp;
+    rr:objectMap [
+      rml:reference "./value"
+    ]
+  ].
