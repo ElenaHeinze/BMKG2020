@@ -21,23 +21,31 @@
     <NAMESPACE>http://www.w3.org/ns/r2rml#</NAMESPACE>
     <LABEL>rr</LABEL>
 </PREFIX>
+<PREFIX>
+    <NAMESPACE>http://geonames.org/</NAMESPACE>
+    <LABEL>gn</LABEL>
+</PREFIX>
+<PREFIX>
+    <NAMESPACE>http://worldbank.org/</NAMESPACE>
+    <LABEL>wb</LABEL>
+</PREFIX>
 <SOURCE>
     <ID>geonames</ID>
     <ENDPOINT>C:/Users/Elena/Desktop/Master/Year1/Courses/BMKG/Assignments/BMKG2020/output_geonames.nt</ENDPOINT>
     <VAR>?y</VAR>
     <PAGESIZE>-1</PAGESIZE>
-    <RESTRICTION>?y rr:predicate dbo:Country</RESTRICTION>
+    <RESTRICTION>?y rdf:type gn:Country</RESTRICTION>
     <PROPERTY>rdfs:label</PROPERTY>
-    <TYPE>N3</TYPE>
+    <TYPE>N-TRIPLE</TYPE>
 </SOURCE>    
 <TARGET>
     <ID>worldbank</ID>
     <ENDPOINT>C:/Users/Elena/Desktop/Master/Year1/Courses/BMKG/Assignments/BMKG2020/output_worldbank.nt</ENDPOINT>
     <VAR>?x</VAR>
     <PAGESIZE>-1</PAGESIZE>
-    <RESTRICTION>?x rr:predicate dbo:Country</RESTRICTION>
-    <PROPERTY>rdfs:label</PROPERTY>
-	<TYPE>N3</TYPE>
+    <RESTRICTION>?x rdf:type wb:GdpEntry</RESTRICTION>
+    <PROPERTY>dbo:Country</PROPERTY>
+	<TYPE>N-TRIPLE</TYPE>
 </TARGET>
 <METRIC>
     levenshtein(y.rdfs:label, x.rdfs:label)

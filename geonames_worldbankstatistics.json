@@ -1,8 +1,8 @@
 {
 	"mappingTime" : 44,
 	"inputSizes" : {
-		"source" : 0,
-		"target" : 0
+		"source" : 252,
+		"target" : 22
 	},
 	"outputSizes" : {
 		"verification" : 0,
@@ -11,13 +11,13 @@
 	"pseudoPRF" : {
 		"acceptance" : {
 			"precision" : 0,000000,
-			"recall" : NaN,
-			"f-measure" : NaN
+			"recall" : 0,000000,
+			"f-measure" : 0,000000
 		},
 		"all" : {
 			"precision" : 0,000000,
-			"recall" : NaN,
-			"f-measure" : NaN
+			"recall" : 0,000000,
+			"f-measure" : 0,000000
 		},
 	}
 }
