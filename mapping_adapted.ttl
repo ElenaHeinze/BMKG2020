@@ -140,13 +140,13 @@
   a rr:TriplesMap;
 
   rml:logicalSource [
-    rml:source "dataset-worldbank-gdp-full.xml";
+    rml:source "dataset-worldbank-gdp.xml";
     rml:referenceFormulation ql:XPath ;
     rml:iterator "/Root/data/record"
   ] ;
 
   # Generate a URI for each GDP yearly entry, for each country
-  rr:subjectMap [ rr:template "http://data.worldbank.org/indicator/{field/@key}?location={country/@key}" ;
+  rr:subjectMap [ rr:template "http://worldbank.org/country/{country/@key}/gdp/{year}" ;
     rr:class wb:GdpEntry ] ;
 
   rr:predicateObjectMap [
