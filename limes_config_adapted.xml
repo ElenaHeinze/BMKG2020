@@ -31,7 +31,7 @@
 </PREFIX>
 <SOURCE>
     <ID>geonames</ID>
-    <ENDPOINT>C:/Users/Elena/Desktop/Master/Year1/Courses/BMKG/Assignments/BMKG2020/output_test.nt</ENDPOINT>
+    <ENDPOINT>C:/Users/Elena/Desktop/Master/Year1/Courses/BMKG/Assignments/Assignment1/BMKG2020/complete.nt</ENDPOINT>
     <VAR>?y</VAR>
     <PAGESIZE>-1</PAGESIZE>
     <RESTRICTION>?y rdf:type gn:Country</RESTRICTION>
@@ -40,7 +40,7 @@
 </SOURCE>    
 <TARGET>
     <ID>worldbank</ID>
-    <ENDPOINT>C:/Users/Elena/Desktop/Master/Year1/Courses/BMKG/Assignments/BMKG2020/output_test.nt</ENDPOINT>
+    <ENDPOINT>C:/Users/Elena/Desktop/Master/Year1/Courses/BMKG/Assignments/Assignment1/BMKG2020/complete.nt</ENDPOINT>
     <VAR>?x</VAR>
     <PAGESIZE>-1</PAGESIZE>
     <RESTRICTION>?x rdf:type wb:GdpEntry</RESTRICTION>
@@ -48,15 +48,15 @@
 	<TYPE>N-TRIPLE</TYPE>
 </TARGET>
 <METRIC>
-    trigrams(y.rdfs:label, x.rdfs:label)
+    cosine(y.rdfs:label, x.rdfs:label)
 </METRIC>
 <ACCEPTANCE>
-    <THRESHOLD>0.9</THRESHOLD>
+    <THRESHOLD>0.85</THRESHOLD>
     <FILE>accepted.nt</FILE>
     <RELATION>owl:sameAs</RELATION>
 </ACCEPTANCE>
 <REVIEW>
-    <THRESHOLD>0.3</THRESHOLD>
+    <THRESHOLD>0.7</THRESHOLD>
     <FILE>reviewme.nt</FILE>
     <RELATION>owl:sameAs</RELATION>
 </REVIEW>
