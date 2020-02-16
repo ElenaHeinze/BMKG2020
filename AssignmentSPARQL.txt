@@ -128,21 +128,38 @@ PREFIX wb: <http://worldbank.org/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
 PREFIX aGeo: <http://example.org/geo#>
+PREFIX gn: <http://geonames.org/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
 
-select ?instance ?country2 ?gdp1 ?year2 ?gdp2 ?gdp_new
-where {
-    ?instance a wb:GdpEntry .
-    ?instance dbo:Year "1960".  
-    ?instance rdfs:label ?country1 .  
-    ?instance dbp:gdp ?gdp1 .
+select ?continent (COUNT(*) AS ?count)
+where { 
+    ?country3 gn:continent ?continent.
+    {    
+        select ?countryUrl ?country ?gdp1960 ?gdp2017 ?gdp_difference
+        where { 
+            ?countryUrl a gn:Country .
+            {
+                select ?instance ?gdp1960 ?gdp2017 ?country ?instance2  ?cn2 ?year2 ?gdp_difference
+                where {
+                    ?instance a wb:GdpEntry .
+                    ?instance dbo:Year "1960".  
+                    ?instance rdfs:label ?country .  
+                    ?instance dbp:gdp ?gdp1960 .
+
+                    ?instance2 a wb:GdpEntry .
+                    ?instance2 dbo:Year ?year2 .  
+                    ?instance2 rdfs:label ?cn2 .  
+                    ?instance2 dbp:gdp ?gdp2017 . 
+                    Filter(?country = ?cn2) 
+                    Filter(?year2 = "2017")
+
+                    bind(xsd:float(?gdp2017) - xsd:float(?gdp1960) as ?gdp_difference)
+                }
+            }
+            ?countryUrl owl:sameAs ?instance .
+
+        }order by desc(?gdp_difference) LIMIT 20
+    }
+    Filter(?country3 = ?countryUrl)
     
-    ?instance2 a wb:GdpEntry .
-    ?instance2 dbo:Year ?year2 .  
-    ?instance2 rdfs:label ?country2 .  
-    ?instance2 dbp:gdp ?gdp2 . 
-    Filter(?country1 = ?country2) 
-    Filter(?year2 = "2017")
-    
-    bind(xsd:float(?gdp2) - xsd:float(?gdp1) as ?gdp_new)
-    
-}order by desc(?gdp_new) 
+}Group by(?continent) ORDER BY DESC(COUNT(*))
