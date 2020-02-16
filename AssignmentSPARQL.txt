@@ -163,3 +163,34 @@ where {
     Filter(?country3 = ?countryUrl)
     
 }Group by(?continent) ORDER BY DESC(COUNT(*))
+
+5:
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+PREFIX dbp: <http://dbpedia.org/property/> 
+PREFIX wb: <http://worldbank.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX aGeo: <http://example.org/geo#>
+PREFIX gn: <http://geonames.org/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+select ?country ?gdp ?population ?gdppc
+where { 
+    ?countryUrl a gn:Country .
+    ?countryUrl dbo:population ?population .
+    {
+        select ?instance ?gdp ?country 
+        where {
+            ?instance a wb:GdpEntry .
+            ?instance dbo:Year "2017".  
+            ?instance rdfs:label ?country .  
+            ?instance dbp:gdp ?gdp .
+        }
+    }
+	?countryUrl owl:sameAs ?instance .
+    
+    bind(xsd:float(?gdp) / ?population as ?gdppc)
+
+}order by desc(?gdppc) 
+    
