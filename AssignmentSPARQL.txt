@@ -164,7 +164,7 @@ where {
     
 }Group by(?continent) ORDER BY DESC(COUNT(*))
 
-5: (without tripples)
+5: (without triples)
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
 PREFIX dbp: <http://dbpedia.org/property/> 
