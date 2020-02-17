@@ -1,4 +1,4 @@
-1:
+Query 1: - Question 1
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
 PREFIX dbop: <http://dbpedia.org/ontology/PopulatedPlace/>
@@ -15,7 +15,7 @@ where {
 }
 order by asc(?area) LIMIT 10
 
-2:
+Query 2: - Question 2
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
 PREFIX dbp: <http://dbpedia.org/property/> 
@@ -33,32 +33,8 @@ where {
     
 }ORDER BY DESC(xsd:float(?gdp)) LIMIT 10
 
-2: (just countries)
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX dbo: <http://dbpedia.org/ontology/> 
-PREFIX dbp: <http://dbpedia.org/property/> 
-PREFIX wb: <http://worldbank.org/> 
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX gn: <http://geonames.org/>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
 
-select ?countryURL ?gdp ?country 
-where {
-    ?countryURL a gn:Country .
-    {
-        select ?instance ?gdp ?year ?country  
-        where {
-            ?instance a wb:GdpEntry . 
-            ?instance rdfs:label ?country .
-            ?instance dbo:Year "2017" .
-            ?instance dbp:gdp ?gdp .
-        }
-    }
-    ?countryURL owl:sameAs ?instance .
-}ORDER BY DESC(xsd:float(?gdp)) LIMIT 10
-
-3:
+Query 3: - Question 3
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
 PREFIX dbp: <http://dbpedia.org/property/> 
@@ -83,44 +59,8 @@ where {
     
     bind(xsd:float(?gdp2) - xsd:float(?gdp1) as ?gdp_new)
 }order by desc(?gdp_new) LIMIT 10
-
-3: (just for countries)
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX dbo: <http://dbpedia.org/ontology/> 
-PREFIX dbp: <http://dbpedia.org/property/> 
-PREFIX wb: <http://worldbank.org/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
-PREFIX aGeo: <http://example.org/geo#>
-PREFIX gn: <http://geonames.org/>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-
-select ?countryUrl ?country ?gdp1960 ?gdp2017 ?gdp_difference
-where { 
-    ?countryUrl a gn:Country .
-    {
-        select ?instance ?gdp1960 ?gdp2017 ?country ?instance2  ?cn2 ?year2 ?gdp_difference
-        where {
-            ?instance a wb:GdpEntry .
-            ?instance dbo:Year "1960".  
-            ?instance rdfs:label ?country .  
-            ?instance dbp:gdp ?gdp1960 .
-            
-            ?instance2 a wb:GdpEntry .
-            ?instance2 dbo:Year ?year2 .  
-            ?instance2 rdfs:label ?cn2 .  
-            ?instance2 dbp:gdp ?gdp2017 . 
-            Filter(?country = ?cn2) 
-    		Filter(?year2 = "2017")
-            
-            bind(xsd:float(?gdp2017) - xsd:float(?gdp1960) as ?gdp_difference)
-        }
-    }
-	?countryUrl owl:sameAs ?instance .
-
-}order by desc(?gdp_difference) LIMIT 10
     
-4:
+Query 4: - Question 4
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
 PREFIX dbp: <http://dbpedia.org/property/> 
@@ -164,37 +104,7 @@ where {
     
 }Group by(?continent) ORDER BY DESC(COUNT(*))
 
-5: (without triples)
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX dbo: <http://dbpedia.org/ontology/> 
-PREFIX dbp: <http://dbpedia.org/property/> 
-PREFIX wb: <http://worldbank.org/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
-PREFIX aGeo: <http://example.org/geo#>
-PREFIX gn: <http://geonames.org/>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-
-select ?country ?gdp ?population ?gdppc
-where { 
-    ?countryUrl a gn:Country .
-    ?countryUrl dbo:population ?population .
-    {
-        select ?instance ?gdp ?country 
-        where {
-            ?instance a wb:GdpEntry .
-            ?instance dbo:Year "2017".  
-            ?instance rdfs:label ?country .  
-            ?instance dbp:gdp ?gdp .
-        }
-    }
-	?countryUrl owl:sameAs ?instance .
-    
-    bind(xsd:float(?gdp) / ?population as ?gdppc)
-
-}order by desc(?gdppc) 
-
-5:
+Query 5: - Question 5
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
 PREFIX dbp: <http://dbpedia.org/property/> 
@@ -225,7 +135,7 @@ where {
     bind(xsd:float(?gdp) / ?population as ?gdppc)
 }
 
-6:
+Query 6: - Question 6
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dbo: <http://dbpedia.org/ontology/> 
 PREFIX dbp: <http://dbpedia.org/property/> 
@@ -257,4 +167,65 @@ where {
     
     bind(xsd:float(?gdp) / ?population as ?gdppc)
 }
+
+Query 7: - Question 2
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+PREFIX dbp: <http://dbpedia.org/property/> 
+PREFIX wb: <http://worldbank.org/> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX gn: <http://geonames.org/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+select ?countryURL ?gdp ?country 
+where {
+    ?countryURL a gn:Country .
+    {
+        select ?instance ?gdp ?year ?country  
+        where {
+            ?instance a wb:GdpEntry . 
+            ?instance rdfs:label ?country .
+            ?instance dbo:Year "2017" .
+            ?instance dbp:gdp ?gdp .
+        }
+    }
+    ?countryURL owl:sameAs ?instance .
+}ORDER BY DESC(xsd:float(?gdp)) LIMIT 10
+
+Query 8: - Question 3
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dbo: <http://dbpedia.org/ontology/> 
+PREFIX dbp: <http://dbpedia.org/property/> 
+PREFIX wb: <http://worldbank.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX aGeo: <http://example.org/geo#>
+PREFIX gn: <http://geonames.org/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+select ?countryUrl ?country ?gdp1960 ?gdp2017 ?gdp_difference
+where { 
+    ?countryUrl a gn:Country .
+    {
+        select ?instance ?gdp1960 ?gdp2017 ?country ?instance2  ?cn2 ?year2 ?gdp_difference
+        where {
+            ?instance a wb:GdpEntry .
+            ?instance dbo:Year "1960".  
+            ?instance rdfs:label ?country .  
+            ?instance dbp:gdp ?gdp1960 .
+            
+            ?instance2 a wb:GdpEntry .
+            ?instance2 dbo:Year ?year2 .  
+            ?instance2 rdfs:label ?cn2 .  
+            ?instance2 dbp:gdp ?gdp2017 . 
+            Filter(?country = ?cn2) 
+    		Filter(?year2 = "2017")
+            
+            bind(xsd:float(?gdp2017) - xsd:float(?gdp1960) as ?gdp_difference)
+        }
+    }
+	?countryUrl owl:sameAs ?instance .
+
+}order by desc(?gdp_difference) LIMIT 10
      
