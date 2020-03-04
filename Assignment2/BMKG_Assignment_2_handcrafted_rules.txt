@@ -1,0 +1,167 @@
+** Important: if you manage to find a high-quality rule then only supply this one rule (if you do not find a high-quality rule you will have to supply two medium-quality rules) **
+
+------------------------------------------------------------------------------------------------------------------------------
+Task 1: Handcrafted rules
+------------------------------------------------------------------------------------------------------------------------------
+
+Predicate 1: country of citizenship (http://www.wikidata.org/prop/direct/P27)
+
+Rule 1:
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+Rule 2 (Optional):
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Predicate 2: sibling (http://www.wikidata.org/prop/direct/P3373)
+
+Rule 1:
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+Rule 2 (Optional):
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Predicate 3: mother (http://www.wikidata.org/prop/direct/P25)
+
+Rule 1:
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+Rule 2 (Optional):
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Predicate 4: place of death (http://www.wikidata.org/prop/direct/P20)
+
+Rule 1:
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+Rule 2 (Optional):
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Predicate 5: spouse (http://www.wikidata.org/prop/direct/P26)
+
+Rule 1:
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+Rule 2 (Optional):
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+------------------------------------------------------------------------------------------------------------------------------
+Task 2: Automatically mined rules
+------------------------------------------------------------------------------------------------------------------------------
+
+Predicate 1: country of citizenship (http://www.wikidata.org/prop/direct/P27)
+
+Rule 1:
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+Rule 2 (Optional):
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Predicate 2: sibling (http://www.wikidata.org/prop/direct/P3373)
+
+Rule 1:
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+Rule 2 (Optional):
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Predicate 3: mother (http://www.wikidata.org/prop/direct/P25)
+
+Rule 1:
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+Rule 2 (Optional):
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Predicate 4: place of death (http://www.wikidata.org/prop/direct/P20)
+
+Rule 1:
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+Rule 2 (Optional):
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Predicate 5: spouse (http://www.wikidata.org/prop/direct/P26)
+
+Rule 1:
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+Rule 2 (Optional):
+
+-- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+
+Confidence score:
+
+-----------------------------------------------------------------------------------------------------------------------------
