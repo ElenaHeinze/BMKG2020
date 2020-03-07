@@ -8,15 +8,18 @@ Predicate 1: country of citizenship (http://www.wikidata.org/prop/direct/P27)
 
 Rule 1:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp: <http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count){
+    SELECT DISTINCT ?x ?z
+    WHERE{
+        ?x   wp:P26  ?y . # x is married to y
+        ?y wp:P27 ?z. # y has country of citizenship z
+        ?x	wp:P27	?z. # x has a country of citizenship y
+    }
+}
 
-Confidence score:
 
-Rule 2 (Optional):
-
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
-
-Confidence score:
+Confidence score: 18/29 -> 62.1% (high quality rule)
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -24,15 +27,32 @@ Predicate 2: sibling (http://www.wikidata.org/prop/direct/P3373)
 
 Rule 1:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp: <http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count){
+    SELECT DISTINCT ?x ?a
+    WHERE{
+        ?x wp:P22  ?y . # x has father y
+        ?y wp:P26 ?z. # y is married to z
+        ?a wp:P25  ?z. # z is the mother of a
+        ?x wp:P3373 ?a. # x is a sibling of a   
+    }
+}
 
-Confidence score:
+Confidence score: 32/102 -> 31% (medium quality rule)
 
-Rule 2 (Optional):
+Rule 2:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp: <http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count){
+    SELECT DISTINCT ?x ?z
+    WHERE{
+        ?x wp:P3373 ?y. # x is a sibling of y
+        ?y wp:P3373 ?z. # y is a sibling of z
+        ?x wp:P3373 ?z. # x is a sibling of z
+    }
+}
 
-Confidence score:
+Confidence score: 233/403 -> 57.8% (medium quality rule)
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -40,15 +60,17 @@ Predicate 3: mother (http://www.wikidata.org/prop/direct/P25)
 
 Rule 1:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp: <http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count){
+    SELECT DISTINCT ?z  ?x
+    WHERE{
+        ?x   wp:P22  ?y . # x has a father y
+        ?y wp:P26 ?z. # y is married to z
+        ?x wp:P25  ?z . # z is mother of x
+    }
+}
 
-Confidence score:
-
-Rule 2 (Optional):
-
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
-
-Confidence score:
+Confidence score: 83/97 -> 85% (high quality rule)
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -56,15 +78,31 @@ Predicate 4: place of death (http://www.wikidata.org/prop/direct/P20)
 
 Rule 1:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp: <http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count){
+    SELECT DISTINCT ?x ?z
+    WHERE{
+        ?x	wp:P26	?y.  	# x is married to y
+        ?y  wp:P20	?z.		# y died in z
+        ?x	wp:P20	?z .	#x died in z
+    }
+}
 
-Confidence score:
+Confidence score: 6/14 -> 42.8% (medium quality rule)
 
-Rule 2 (Optional):
+Rule 2:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp: <http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count){
+    SELECT DISTINCT ?x ?y
+    WHERE{
+      	?x wp:P19 ?y.  # x has place of birth y
+        ?x wp:P937 ?y. # x has workplace y
+        ?x	wp:P20	?y.  # x died in y
+    }
+}
 
-Confidence score:
+Confidence score: 108/269 -> 40.1% (medium quality rule)
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -72,33 +110,57 @@ Predicate 5: spouse (http://www.wikidata.org/prop/direct/P26)
 
 Rule 1:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp: <http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count){
+    SELECT DISTINCT ?y ?z
+    WHERE{
+        ?x wp:P25 ?y . # x has a mother y
+        ?x wp:P22 ?z . # x has a father z
+        ?y wp:P26 ?z. # y is married to z
+        
+    }
+}
 
-Confidence score:
-
-Rule 2 (Optional):
-
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
-
-Confidence score:
+Confidence score: 7/8 -> 87.5% (high quality rule)
 
 ------------------------------------------------------------------------------------------------------------------------------
 Task 2: Automatically mined rules
 ------------------------------------------------------------------------------------------------------------------------------
+NOTE: The queries are additionally provided in such a way that they can be used for inserting the links.
+
 
 Predicate 1: country of citizenship (http://www.wikidata.org/prop/direct/P27)
 
 Rule 1:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count)
+{
+    SELECT DISTINCT ?a ?b
+WHERE{
+    ?f  wp:P17  ?b . # country
+    ?a  wp:P27  ?f . # country of citizenship
+    ?a  wp:P27 ?b . # country of citizenship
+}
+}
 
-Confidence score:
+FOR INSERTING:
 
-Rule 2 (Optional):
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+INSERT {
+ 	?a wp:P27 ?b .
+}
+where{ 
+    ?f  wp:P17  ?b . # country
+    ?a  wp:P27  ?f . # country of citizenship
+    ?a  wp:P27 ?b . # country of citizenship   
+}
 
-Confidence score:
+
+Confidence score: 481/484 -> 99.4% (high quality rule)
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -106,15 +168,60 @@ Predicate 2: sibling (http://www.wikidata.org/prop/direct/P3373)
 
 Rule 1:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count)
+{
+    SELECT DISTINCT ?a ?b
+WHERE{
+?a wp:P22 ?f . # f father of a
+?b wp:P22 ?f . # f father of b
+?a wp:P3373 ?b . # a and b are siblings      
+}
+}
 
-Confidence score:
+FOR INSERTING:
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
+
+INSERT {
+ 	?a wp:P3373 ?b .
+}
+where{  
+?a wp:P22 ?f . # f father of a
+?b wp:P22 ?f . # f father of b
+?a wp:P3373 ?b . # a and b are siblings      
+}
+
+Confidence score: 166/324 -> 51.2% (medium quality rule)
 
 Rule 2 (Optional):
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp: <http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count)
+{
+    SELECT DISTINCT ?a ?b
+WHERE{
+?f wp:P3373 ?b . # siblings
+?a wp:P3373 ?f . #siblings
+?a wp:P3373 ?b . #siblings      
+}
+}
 
-Confidence score:
+FOR INSERTING:
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
+
+INSERT {
+ 	?a wp:P3373 ?b .
+}
+where{  
+?f wp:P3373 ?b . # siblings
+?a wp:P3373 ?f . #siblings
+?a wp:P3373 ?b . #siblings   
+}
+
+Confidence score: 233/403 -> 57.8% (medium quality rule)
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -122,15 +229,34 @@ Predicate 3: mother (http://www.wikidata.org/prop/direct/P25)
 
 Rule 1:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count)
+{
+SELECT DISTINCT ?a ?b
+WHERE{
+?f wp:P25 ?b . # b mother of f
+?a wp:P3373 ?f . # a sibling of f
+?a wp:P25 ?b . # b mother of a     
+}
+}
 
-Confidence score:
+FOR INSERTING:
 
-Rule 2 (Optional):
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+INSERT {
+ 	?a wp:P25 ?b .
+}
+where{  
+?f wp:P25 ?b . # b mother of f
+?a wp:P3373 ?f . # a sibling of f
+?a wp:P25 ?b . # b mother of a   
+}
 
-Confidence score:
+
+Confidence score: 141/147 -> 95.9% (high quality rule)
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -138,15 +264,56 @@ Predicate 4: place of death (http://www.wikidata.org/prop/direct/P20)
 
 Rule 1:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX	wp: <http://www.wikidata.org/prop/direct/>
+select (count(*) as ?count){
+    select distinct ?a ?b
+    where{  
+        ?a wp:P19 ?b . # place of birth 
+        ?a wp:P937 ?b . # work location
+        ?a wp:P20 ?b .  # place of death
+    }
+}
 
-Confidence score:
+FOR INSERTING:
 
-Rule 2 (Optional):
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+INSERT {
+ 	?a wp:P20 ?b .
+}
+where{  
+    ?a wp:P19 ?b .
+    ?a wp:P937 ?b .
+    ?a wp:P20 ?b .  
+}
 
-Confidence score:
+Confidence score: 108/269 -> 40% (medium quality rule)
+
+Rule 2:
+
+PREFIX	wp: <http://www.wikidata.org/prop/direct/>
+select (count(*) as ?count){
+    select distinct ?a ?b
+    where{  
+        ?a wp:P937 ?b .
+        ?a wp:P20 ?b .  
+    }
+}
+
+FOR INSERTING:
+
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
+
+INSERT {
+ 	?a wp:P20 ?b .
+}
+where{  
+    ?a wp:P937 ?b .
+    ?a wp:P20 ?b .  
+}
+Confidence score: 317/1413 -> 22.4% (low quality rule, but high generality)
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -154,14 +321,32 @@ Predicate 5: spouse (http://www.wikidata.org/prop/direct/P26)
 
 Rule 1:
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count)
+{
+    SELECT DISTINCT ?a ?b
+WHERE{
+?e wp:P22 ?a . # father
+?e wp:P25 ?b . # mother
+?a wp:P26 ?b . # spouse     
+}
+}
 
-Confidence score:
+FOR INSERTING:
 
-Rule 2 (Optional):
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
 
--- INSERT SPARQL FORMULATION OF YOUR RULE HERE --
+INSERT {
+ 	?a wp:P26 ?b .
+}
+WHERE{
+?e wp:P22 ?a . # father
+?e wp:P25 ?b . # mother
+?a wp:P26 ?b . # spouse     
+}
 
-Confidence score:
+Confidence score: 68/68 -> 1 (high quality rule)
 
 -----------------------------------------------------------------------------------------------------------------------------
