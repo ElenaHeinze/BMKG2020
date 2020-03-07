@@ -1,0 +1,79 @@
+Citizenship:
+
+PREFIX wp: <http://www.wikidata.org/prop/direct/>
+SELECT DISTINCT ?x ?z
+WHERE{
+    ?x wp:P26 ?y . # x is married to y
+    ?y wp:P27 ?z. # y has country of citizenship z
+
+    ?f  wp:P17  ?z . # country
+    ?x  wp:P27  ?f . # country of citizenship
+    MINUS{?x wp:P27 ?z} . # country of citizenship 
+}
+
+# 0 to insert
+
+Siblings:
+
+PREFIX wp: <http://www.wikidata.org/prop/direct/>
+SELECT DISTINCT ?x ?y
+WHERE{
+    ?x wp:P3373 ?z. # x is a sibling of y
+    ?z wp:P3373 ?y. # y is a sibling of z
+
+    ?x wp:P22  ?b . # x has father b
+    ?y wp:P22 ?b . # y has father b
+    ?b wp:P26 ?c. # b is married to c
+    ?y wp:P25  ?c. # c is the mother of y
+    FILTER(?x != ?y)
+    MINUS{?x wp:P3373 ?y}. # x is a sibling of y 
+}
+
+# 1 to insert
+
+Mother:
+
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
+
+SELECT DISTINCT ?a ?b
+WHERE{
+    ?f wp:P25 ?b . # b mother of f
+    ?f wp:P3373 ?a . # a sibling of f
+    ?a wp:P22 ?y .
+    ?y wp:P26 ?b .
+    FILTER(?a != ?f)    
+    MINUS{?a wp:P25 ?b} . # b mother of a   
+}
+
+# 1 to insert
+
+Place of death:
+
+PREFIX wp: <http://www.wikidata.org/prop/direct/>
+SELECT (COUNT(*) AS ?count){
+    SELECT DISTINCT ?x ?y
+    WHERE{
+        ?x wp:P19 ?y.  # x has place of birth y
+        ?x wp:P937 ?y. # x has workplace y
+        ?x wp:P26 ?z .
+        ?z wp:P20 ?y .
+        ?x	wp:P20	?y.  # x died in y
+    }
+}
+
+# 0 to insert
+
+Spouse:
+
+PREFIX wp:
+<http://www.wikidata.org/prop/direct/>
+SELECT DISTINCT ?a ?b
+WHERE{
+    ?e wp:P22 ?a . # father
+    ?e wp:P25 ?b . # mother
+    ?b wp:P26 ?a . # spouse one direction
+    MINUS{?a wp:P26 ?b} . # spouse other direction
+}
+
+# 4 to insert

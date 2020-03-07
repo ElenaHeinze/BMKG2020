@@ -12,9 +12,9 @@ PREFIX wp: <http://www.wikidata.org/prop/direct/>
 SELECT (COUNT(*) AS ?count){
     SELECT DISTINCT ?x ?z
     WHERE{
-        ?x   wp:P26  ?y . # x is married to y
+        ?x wp:P26 ?y . # x is married to y
         ?y wp:P27 ?z. # y has country of citizenship z
-        ?x	wp:P27	?z. # x has a country of citizenship y
+        ?x wp:P27 ?z. # x has a country of citizenship y
     }
 }
 
