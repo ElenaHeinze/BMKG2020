@@ -1,0 +1,17 @@
+{
+  "<http://www.w3.org/2000/01/rdf-schema#label>": 0,
+  "<http://www.wikidata.org/prop/direct/P106>": 1,
+  "<http://www.wikidata.org/prop/direct/P17>": 2,
+  "<http://www.wikidata.org/prop/direct/P19>": 3,
+  "<http://www.wikidata.org/prop/direct/P20>": 4,
+  "<http://www.wikidata.org/prop/direct/P21>": 5,
+  "<http://www.wikidata.org/prop/direct/P22>": 6,
+  "<http://www.wikidata.org/prop/direct/P25>": 7,
+  "<http://www.wikidata.org/prop/direct/P26>": 8,
+  "<http://www.wikidata.org/prop/direct/P27>": 9,
+  "<http://www.wikidata.org/prop/direct/P3373>": 10,
+  "<http://www.wikidata.org/prop/direct/P53>": 11,
+  "<http://www.wikidata.org/prop/direct/P569>": 12,
+  "<http://www.wikidata.org/prop/direct/P734>": 13,
+  "<http://www.wikidata.org/prop/direct/P937>": 14
+}

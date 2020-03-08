@@ -1,0 +1,15 @@
+<http://www.w3.org/2000/01/rdf-schema#label>	6762
+<http://www.wikidata.org/prop/direct/P106>	4121
+<http://www.wikidata.org/prop/direct/P937>	2005
+<http://www.wikidata.org/prop/direct/P27>	1935
+<http://www.wikidata.org/prop/direct/P734>	1660
+<http://www.wikidata.org/prop/direct/P19>	1631
+<http://www.wikidata.org/prop/direct/P22>	1624
+<http://www.wikidata.org/prop/direct/P21>	1621
+<http://www.wikidata.org/prop/direct/P25>	1605
+<http://www.wikidata.org/prop/direct/P3373>	1364
+<http://www.wikidata.org/prop/direct/P20>	1150
+<http://www.wikidata.org/prop/direct/P17>	894
+<http://www.wikidata.org/prop/direct/P26>	623
+<http://www.wikidata.org/prop/direct/P53>	152
+<http://www.wikidata.org/prop/direct/P569>	1
