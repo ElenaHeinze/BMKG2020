@@ -1,0 +1,392 @@
+midii@midii-SP:~/Desktop/FaVLib$ sudo docker image ls
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+umids/favlib        latest              3553148a4216        3 days ago          5.94GB
+hello-world         latest              fce289e99eb9        14 months ago       1.84kB
+
+midii@midii-SP:~/Desktop/FaVLib$ sudo docker run -d --name favlib --rm -p 8888:8888 -v $PWD:/jupyter -v /tmp:/tmp 3553148a4216
+5affa144a42ba9863afa99f1ee2d76e2a292c5cf1d7c0c0af810a791b8062957
+
+midii@midii-SP:~/Desktop/FaVLib$ ls
+command.txt  docker-compose.yml  ExampleGeneration  load.sh    README_old.md     src       workflow_factvalid.png
+data         Dockerfile          LICENSE            README.md  requirements.txt  workflow
+
+midii@midii-SP:~/Desktop/FaVLib$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+5affa144a42b        3553148a4216        "tini -g -- start-no…"   32 seconds ago      Up 31 seconds       0.0.0.0:8888->8888/tcp   favlib
+
+midii@midii-SP:~/Desktop/FaVLib$ sudo docker exec -it 5affa144a42b cwltool --outdir=/jupyter/output workflow/main-workflow-pykeen.cwl workflow/workflow-pykeen.yml
+/usr/bin/cwltool 1.0.20180302231433
+Resolved 'workflow/main-workflow-pykeen.cwl' to 'file:///jupyter/workflow/main-workflow-pykeen.cwl'
+workflow/main-workflow-pykeen.cwl:8:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:8:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:12:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:12:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:16:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:16:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:20:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:20:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:24:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:24:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:28:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:28:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:32:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:32:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:36:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:36:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:40:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:40:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:44:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:44:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:48:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:48:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:52:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:52:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:56:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:56:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:60:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:60:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:64:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:64:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:68:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:68:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:72:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:72:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:76:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:76:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:80:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:80:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:84:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:84:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:88:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:88:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:93:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:93:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:99:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:99:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:105:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:105:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:112:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:112:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:148:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:148:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:176:5: unrecognized extension field `https://www.sevenbridges.com/x`.  Did you include a $schemas section?
+workflow/main-workflow-pykeen.cwl:176:5: unrecognized extension field `https://www.sevenbridges.com/y`.  Did you include a $schemas section?
+workflow/steps/generate_embeddings_pykeen.cwl:23:5: unrecognized extension field `https://www.sevenbridges.com/toolDefaultValue`.  Did you include a $schemas section?
+[workflow main-workflow-pykeen.cwl] start
+[step generate_examples_aynec] start
+[job generate_examples_aynec] /tmp/tmpCCVcsm$ python3 \
+    /jupyter/src/datagen/DataGen.py \
+    --inF \
+    /jupyter/data/input/yago2core.10kseedsSample.compressed.notypes.tsv \
+    --outF \
+    datagen \
+    --negStrategy \
+    change_source \
+    --minNumRel \
+    1 \
+    --fractionTest \
+    0.1 \
+    --numTestNegatives \
+    10 \
+    --numTrainNegatives \
+    1 \
+    --predicate \
+    '<hasCapital>' \
+    --predict \
+    1
+datagen
+datagen
+
+Reading graph
+
+Grouping edges
+
+Pruning relations
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 18801/18801 [00:00<00:00, 5653649.95it/s]
+Kept 32 relations out of 32
+
+Removing small relations
+0it [00:00, ?it/s]
+Creating summary
+
+Finding inverse relations
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 496/496.0 [00:00<00:00, 2868.55it/s]
+found 0 inverses
+Storing outgoing edges for each node
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 18801/18801 [00:00<00:00, 606150.19it/s]
+
+Dividing graph
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 32/32 [00:00<00:00, 507.64it/s]
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 15.74it/s]
+
+Generating negatives
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [00:00<00:00, 9727.05it/s]
+
+Generating negatives
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 18801/18801 [00:00<00:00, 97945.27it/s]
+Exporting train triples
+Exporting train positive triples
+Exporting prediction triples
+Exporting relations
+Exporting entities
+Exporting inverses
+Exporting data properties
+[job generate_examples_aynec] completed success
+[step generate_examples_aynec] completed success
+[step generate_embeddings_pykeen] start
+[job generate_embeddings_pykeen] /tmp/tmpTk6CTn$ python3 \
+    /jupyter/src/PyKEEN.py \
+    -tr \
+    /tmp/tmpw0iWjH/stgdab5d0b3-d60a-4b36-843f-d33887ea28cb/datagen/train_positives.tsv \
+    -o \
+    embedding \
+    -seed \
+    0 \
+    -emb_model \
+    TransE \
+    -emb_dim \
+    50 \
+    -scoring_fun \
+    1 \
+    -norm_of_entities \
+    2 \
+    -margin_loss \
+    1 \
+    -learning_rate \
+    0.01 \
+    -num_epochs \
+    50 \
+    -batch_size \
+    64 \
+    -preferred_device \
+    cpu
+embedding
+{'training_set_path': '/tmp/tmpw0iWjH/stgdab5d0b3-d60a-4b36-843f-d33887ea28cb/datagen/train_positives.tsv', 'execution_mode': 'Training_mode', 'random_seed': 0, 'kg_embedding_model_name': 'TransE', 'embedding_dim': 50, 'scoring_function': 1, 'normalization_of_entities': 2, 'margin_loss': 1.0, 'learning_rate': 0.01, 'num_epochs': 50, 'batch_size': 64, 'filter_negative_triples': True, 'preferred_device': 'cpu'}
+Training epoch: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [05:06<00:00,  6.14s/it]
+Embedding learning is complete
+[job generate_embeddings_pykeen] completed success
+[step generate_embeddings_pykeen] completed success
+[step triple_classifier_pykeen] start
+[job triple_classifier_pykeen] /tmp/tmpPS2ed1$ python3 \
+    /jupyter/src/TrainingTripleFacts.py \
+    -train \
+    /tmp/tmpCk0ltJ/stgfb247155-0234-49ac-8abc-467a4c095782/datagen/train.txt \
+    -test \
+    /tmp/tmpCk0ltJ/stgfb247155-0234-49ac-8abc-467a4c095782/datagen/test.txt \
+    -emb \
+    /tmp/tmpCk0ltJ/stg280a2546-6301-4f60-98d0-1fd4cdc9dad6/embedding/entities_to_embeddings.json \
+    -relmap \
+    /tmp/tmpCk0ltJ/stg280a2546-6301-4f60-98d0-1fd4cdc9dad6/embedding/relation_to_id.json \
+    -otrain \
+    0 \
+    -otest \
+    0 \
+    -predict \
+    1
+Namespace(embeddings='/tmp/tmpCk0ltJ/stg280a2546-6301-4f60-98d0-1fd4cdc9dad6/embedding/entities_to_embeddings.json', predict=1, relmapping='/tmp/tmpCk0ltJ/stg280a2546-6301-4f60-98d0-1fd4cdc9dad6/embedding/relation_to_id.json', test='/tmp/tmpCk0ltJ/stgfb247155-0234-49ac-8abc-467a4c095782/datagen/test.txt', test_output=0, train='/tmp/tmpCk0ltJ/stgfb247155-0234-49ac-8abc-467a4c095782/datagen/train.txt', train_output=0)
+Training file /tmp/tmpCk0ltJ/stgfb247155-0234-49ac-8abc-467a4c095782/datagen/train.txt
+number of train samples 37600
+number of positives in train 18801
+number of neegatives in train 18799
+number of test samples 55
+number of positives in test 5
+number of neegatives in test 50
+/opt/conda/lib/python3.7/site-packages/sklearn/linear_model/logistic.py:432: FutureWarning: Default solver will be changed to 'lbfgs' in 0.22. Specify a solver to silence this warning.
+  FutureWarning)
+Best ROC  0.876 
+ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+                       max_depth=8, max_features='auto', max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=None, verbose=0,
+                       warm_start=False)
+   accuracy  average_precision        f1               method  precision  recall  roc_auc
+0  0.600000           0.094367  0.083333          Naive Bayes   0.052632     0.2    0.464
+1  0.563636           0.098920  0.142857  Logistic Regression   0.086957     0.4    0.472
+2  0.672727           0.489048  0.307692        Random Forest   0.190476     0.8    0.876
+[job triple_classifier_pykeen] completed success
+[step triple_classifier_pykeen] completed success
+[workflow main-workflow-pykeen.cwl] completed success
+{
+    "embedding_output_folder": {
+        "basename": "embedding", 
+        "location": "file:///jupyter/output/embedding", 
+        "listing": [
+            {
+                "checksum": "sha1$d33f3f11903284ce1fb19f005eee5bbad33449d6", 
+                "basename": "entities_to_embeddings.pkl", 
+                "location": "file:///jupyter/output/embedding/entities_to_embeddings.pkl", 
+                "path": "/jupyter/output/embedding/entities_to_embeddings.pkl", 
+                "class": "File", 
+                "size": 7730294
+            }, 
+            {
+                "checksum": "sha1$654934b39e02904ed8d88a91f8cbb8edcd62799e", 
+                "basename": "relation_to_id.json", 
+                "location": "file:///jupyter/output/embedding/relation_to_id.json", 
+                "path": "/jupyter/output/embedding/relation_to_id.json", 
+                "class": "File", 
+                "size": 724
+            }, 
+            {
+                "checksum": "sha1$95260e364e6ad6af8f70af602883b92420468e82", 
+                "basename": "relations_to_embeddings.json", 
+                "location": "file:///jupyter/output/embedding/relations_to_embeddings.json", 
+                "path": "/jupyter/output/embedding/relations_to_embeddings.json", 
+                "class": "File", 
+                "size": 41447
+            }, 
+            {
+                "checksum": "sha1$c06b37ad6c41b3ae1f64d70a25f964682415aa07", 
+                "basename": "entities_to_embeddings.json", 
+                "location": "file:///jupyter/output/embedding/entities_to_embeddings.json", 
+                "path": "/jupyter/output/embedding/entities_to_embeddings.json", 
+                "class": "File", 
+                "size": 28704697
+            }, 
+            {
+                "checksum": "sha1$1df92686ce59cbf51767ed8f75d7d932e3ebdbe6", 
+                "basename": "losses.json", 
+                "location": "file:///jupyter/output/embedding/losses.json", 
+                "path": "/jupyter/output/embedding/losses.json", 
+                "class": "File", 
+                "size": 1090
+            }, 
+            {
+                "checksum": "sha1$ed720d1ae6076ec7e1f0aa8dff589c6e0283c47f", 
+                "basename": "relations_to_embeddings.pkl", 
+                "location": "file:///jupyter/output/embedding/relations_to_embeddings.pkl", 
+                "path": "/jupyter/output/embedding/relations_to_embeddings.pkl", 
+                "class": "File", 
+                "size": 10479
+            }, 
+            {
+                "checksum": "sha1$d1f778d72626ab2890494e6c2bbabfaf2826961a", 
+                "basename": "trained_model.pkl", 
+                "location": "file:///jupyter/output/embedding/trained_model.pkl", 
+                "path": "/jupyter/output/embedding/trained_model.pkl", 
+                "class": "File", 
+                "size": 4408661
+            }, 
+            {
+                "checksum": "sha1$68d0db0448b4b3e7b5ab52e58b7ab1285dbc9896", 
+                "basename": "configuration.json", 
+                "location": "file:///jupyter/output/embedding/configuration.json", 
+                "path": "/jupyter/output/embedding/configuration.json", 
+                "class": "File", 
+                "size": 518
+            }, 
+            {
+                "checksum": "sha1$257421d9c0f6823161984c7fb2dbcad71e674f21", 
+                "basename": "entity_to_id.json", 
+                "location": "file:///jupyter/output/embedding/entity_to_id.json", 
+                "path": "/jupyter/output/embedding/entity_to_id.json", 
+                "class": "File", 
+                "size": 718608
+            }
+        ], 
+        "path": "/jupyter/output/embedding", 
+        "class": "Directory"
+    }, 
+    "examples_file_output": {
+        "basename": "datagen", 
+        "location": "file:///jupyter/output/datagen", 
+        "listing": [
+            {
+                "checksum": "sha1$bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f", 
+                "basename": "data_properties.json", 
+                "location": "file:///jupyter/output/datagen/data_properties.json", 
+                "path": "/jupyter/output/datagen/data_properties.json", 
+                "class": "File", 
+                "size": 2
+            }, 
+            {
+                "checksum": "sha1$10a30c52f93dff3dd2de3ba447e29a92b2646482", 
+                "basename": "summary.html", 
+                "location": "file:///jupyter/output/datagen/summary.html", 
+                "path": "/jupyter/output/datagen/summary.html", 
+                "class": "File", 
+                "size": 2232221
+            }, 
+            {
+                "checksum": "sha1$622c85490e92064fe6979c98b0dc770a782de149", 
+                "basename": "train.txt", 
+                "location": "file:///jupyter/output/datagen/train.txt", 
+                "path": "/jupyter/output/datagen/train.txt", 
+                "class": "File", 
+                "size": 1997864
+            }, 
+            {
+                "checksum": "sha1$f14bc16e2e469cec46de41daff4f2e7baa771fe2", 
+                "basename": "relations.txt", 
+                "location": "file:///jupyter/output/datagen/relations.txt", 
+                "path": "/jupyter/output/datagen/relations.txt", 
+                "class": "File", 
+                "size": 557
+            }, 
+            {
+                "checksum": "sha1$095232fadd6625d57106486dbf188accc160341d", 
+                "basename": "entities.txt", 
+                "location": "file:///jupyter/output/datagen/entities.txt", 
+                "path": "/jupyter/output/datagen/entities.txt", 
+                "class": "File", 
+                "size": 592437
+            }, 
+            {
+                "checksum": "sha1$292db76d9a3500d7ec7ef223ade521cda2e2d87f", 
+                "basename": "train_positives.tsv", 
+                "location": "file:///jupyter/output/datagen/train_positives.tsv", 
+                "path": "/jupyter/output/datagen/train_positives.tsv", 
+                "class": "File", 
+                "size": 951863
+            }, 
+            {
+                "checksum": "sha1$b9dc0fcb9e2076d4d8a81282b458acb3a43a4fb1", 
+                "basename": "test.txt", 
+                "location": "file:///jupyter/output/datagen/test.txt", 
+                "path": "/jupyter/output/datagen/test.txt", 
+                "class": "File", 
+                "size": 2530
+            }, 
+            {
+                "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+                "basename": "inverses.txt", 
+                "location": "file:///jupyter/output/datagen/inverses.txt", 
+                "path": "/jupyter/output/datagen/inverses.txt", 
+                "class": "File", 
+                "size": 0
+            }
+        ], 
+        "path": "/jupyter/output/datagen", 
+        "class": "Directory"
+    }, 
+    "output_folder": {
+        "basename": "clsout", 
+        "location": "file:///jupyter/output/clsout", 
+        "listing": [
+            {
+                "checksum": "sha1$b2561f49715a51354250a4525384a63284bb5dad", 
+                "basename": "results.csv", 
+                "location": "file:///jupyter/output/clsout/results.csv", 
+                "path": "/jupyter/output/clsout/results.csv", 
+                "class": "File", 
+                "size": 359
+            }, 
+            {
+                "checksum": "sha1$aee5aa8e06062cdcaf26b40b14080de96d53d604", 
+                "basename": "prediction.csv", 
+                "location": "file:///jupyter/output/clsout/prediction.csv", 
+                "path": "/jupyter/output/clsout/prediction.csv", 
+                "class": "File", 
+                "size": 3174
+            }
+        ], 
+        "path": "/jupyter/output/clsout", 
+        "class": "Directory"
+    }
+}
+Final process status is success
+midii@midii-SP:~/Desktop/FaVLib$ 
+
